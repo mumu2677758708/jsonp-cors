@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest;
+        // 携带cookie时，是不会传给后台的，因为cookie不支持跨域，解决办法：xhr.withCredentials = true
+        document.cookie = 'id=11'
+        xhr.withCredentials = true
+        xhr.open('GET','http://localhost:4000/getData',true)
+        xhr.setRequestHeader('name','aa')
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304){
+                    console.log(xhr.response)
+                    // 接收后台传来的响应头
+                    console.log(xhr.getResponseHeader('sex'))
+                }
+            }
+        }
+        xhr.send()
+    </script>
+</body>
+</html>

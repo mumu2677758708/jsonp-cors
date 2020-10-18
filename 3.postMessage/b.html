@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onmessage = function(e){
+            console.log(e.data)
+            // 给通信的页面发消息
+            e.source.postMessage('我不爱你',e.origin)
+        }
+    </script>
+</body>
+</html>
